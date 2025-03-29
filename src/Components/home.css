@@ -1,0 +1,6 @@
+.background-section {
+    background-image: url('./marcus.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    height: 100vh; 
+  }
