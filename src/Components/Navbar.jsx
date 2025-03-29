@@ -26,15 +26,15 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 px-4 lg:px-8 mt-4">
-      <div className="mx-auto max-w-screen-xl flex justify-between items-center bg-white lg:rounded-full lg:border lg:shadow-md py-3 px-5 lg:px-8 transition-all">
+    <header className="absolute top-0 left-0 w-full z-50  lg:px-8 mt-4">
+      <div className="mx-auto max-w-screen-xl flex justify-between items-center bg-white lg:rounded-full bg-white/80 backdrop-blur-md md:shadow-sm max-md:border-none  border-2 border-gray-200  py-3 px-5 lg:px-8 transition-all">
         {/* Logo */}
-        <a href="/" className="lg:text-2xl text-xl font-bold text-black">
+        <a href="/" className="lg:text-4xl md:text-3xl text-xl font-bold text-black">
           <span className="text-blue-500">Olale</span>kan
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center  gap-8">
           {navLinks.map(({ name, href }) => (
             <a
               key={name}

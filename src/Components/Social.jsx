@@ -10,14 +10,14 @@ const socialLinks = [
 
 const SocialLinks = () => {
   return (
-    <div className="flex  items-center gap-3 text-lg   ">
+    <div className="flex flex-col  items-center gap-3 text-lg   ">
       {socialLinks.map(({ href, icon, label, color }, index) => (
         <a
           key={index}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${color} text-white p-3 border-2 border-blue-500 rounded-full hover:bg-white hover:text-blue-500 hover:scale-110 transition-all duration-300`}
+          className={`${color} text-white p-3 border-2 border-blue-500 rounded-full hover:bg-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:text-blue-500 hover:scale-110 transition-all duration-300`}
           title={label}
         >
           {icon}

@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import profileImage from "../assets/me.jfif";
+import profileImage from "../assets/me3.jfif";
 import {
-  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt, FaGithub, FaBootstrap,
- FaLaptopCode, FaPalette,FaBriefcase,FaUserGraduate,FaTools
+  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt, FaGithub, FaNodeJs, FaBootstrap,
+ FaPalette,FaBriefcase,FaUserGraduate,FaTools
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiTypescript, SiRedux, SiSass,SiMongodb, SiFirebase, SiFigma
 } from "react-icons/si";
-
 
 
 
@@ -31,7 +30,7 @@ const Portfolio = () => {
     { name: "React", icon: <FaReact className="text-blue-400 text-2xl" /> },
     { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400 text-2xl" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-blue-600 text-2xl" /> },
-   
+    { name: "Node.js", icon: <FaNodeJs className="text-green-500 text-2xl" /> },
     { name: "Git", icon: <FaGitAlt className="text-red-500 text-2xl" /> },
     { name: "GitHub", icon: <FaGithub className="text-gray-800 text-2xl" /> },
     { name: "Redux", icon: <SiRedux className="text-purple-500 text-2xl" /> },
@@ -39,7 +38,7 @@ const Portfolio = () => {
     { name: "Bootstrap", icon: <FaBootstrap className="text-indigo-600 text-2xl" /> },
     { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-2xl" /> },
     { name: "Firebase", icon: <SiFirebase className="text-yellow-600 text-2xl" /> },
-  
+
     { name: "Figma", icon: <SiFigma className="text-purple-400 text-2xl" /> },
   ];
 
@@ -54,11 +53,16 @@ const Portfolio = () => {
         data-aos="fade-up"
       >
         {/* Header with subtle background pattern */}
-        <div className="text-center p-5 border-gray-200 mb-3">
-          <h1 className="text-4xl font-semibold tracking-tight text-gray-900 relative inline-block">
-            About <span className="text-blue-600">ME</span>
-            <div className="absolute -bottom-2 left-0 w-full h-1 bg-blue-500 rounded-full"></div>
-          </h1>
+        <div className="text-center mb-16" data-aos="fade-up">
+        <span className="inline-block text-blue-600 font-semibold mb-4 bg-blue-100 px-4 py-1 rounded-full">
+          About Me
+        </span>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          My <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Story</span>
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Get to know more about me, my background, and what drives my passion for development and design.
+        </p>
         </div>
 
         {/* Main Content with developer image */}
@@ -142,3 +146,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
