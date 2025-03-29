@@ -17,8 +17,9 @@ const SocialLinks = () => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${color} text-white p-3 border-2 border-blue-500 rounded-full hover:bg-white hover:text-blue-500 hover:scale-110 transition-all duration-300`}
+          className={`${color} text-white p-2 border-[0.5px] border-blue-500 rounded-full  bg-blue-500 to-indigo-600 hover:bg-white hover:text-blue-500 hover:scale-110 transition-all duration-300`}
           title={label}
+      
         >
           {icon}
         </a>

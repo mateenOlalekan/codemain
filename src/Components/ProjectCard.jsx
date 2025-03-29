@@ -8,22 +8,15 @@ const ProjectCard = ({ project, index }) => {
     JavaScript: <Code className="h-4 w-4 text-yellow-500" />,
     Firebase: <Code className="h-4 w-4 text-orange-500" />,
     "Node.js": <Code className="h-4 w-4 text-green-600" />,
-    MongoDB: <Code className="h-4 w-4 text-green-500" />,
-    Express: <Code className="h-4 w-4 text-gray-600" />,
+
     "Next.js": <Code className="h-4 w-4 text-black" />,
     "Vue.js": <Code className="h-4 w-4 text-emerald-500" />,
     "D3.js": <Layers className="h-4 w-4 text-orange-400" />,
-    Angular: <Code className="h-4 w-4 text-red-600" />,
-    PostgreSQL: <Code className="h-4 w-4 text-blue-500" />,
+
     AWS: <Code className="h-4 w-4 text-orange-400" />,
     "Framer Motion": <Layers className="h-4 w-4 text-purple-500" />,
     "Tailwind CSS": <Layers className="h-4 w-4 text-sky-500" />,
-    GraphQL: <Code className="h-4 w-4 text-pink-600" />,
-    Vercel: <Code className="h-4 w-4 text-black" />,
     "React Native": <Code className="h-4 w-4 text-blue-400" />,
-    Redux: <Code className="h-4 w-4 text-purple-600" />,
-    MQTT: <Code className="h-4 w-4 text-green-500" />,
-    WebSockets: <Code className="h-4 w-4 text-teal-500" />,
   };
 
   return (

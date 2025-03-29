@@ -1,5 +1,5 @@
 import { FaDownload, FaEye } from "react-icons/fa";
-import { useEffect,useState } from "react";
+import { useEffect} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./SocialLinks";
@@ -12,7 +12,7 @@ import {
 
 
 const Home = () => {
-  const[fuse,setFuse] = useState(false);
+
   // Initialize AOS animations
   useEffect(() => {
     AOS.init({
@@ -50,14 +50,17 @@ const Home = () => {
     </button>
 
     </div>
-    <div className=" max-md:hidden">
+    <div className=" max-md:hidden block">
     <SocialLinks />
+    </div> *
     </div>
-    </div>
-
-    <div className=" md:block">
+    <div className="md:hidden block">
     <Social />
     </div>
+
+    {/* <div className="md:hidden block">
+    <Social />
+    </div> */}
 
 
 

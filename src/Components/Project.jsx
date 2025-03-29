@@ -61,7 +61,7 @@ function Project() {
   }, []);
 
   return (
-    <div id="project" className="bg-gray-50 py-16 md:py-24 flex flex-col justify-center items-center px-6 lg:px-32">
+    <div id="project" className="bg-gray-50 py-12 md:py-14 flex flex-col justify-center items-center px-6 lg:px-32">
       
       {/* Section Header */}
       <div className="text-center mb-12" data-aos="fade-up">
