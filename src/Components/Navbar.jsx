@@ -26,10 +26,10 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50  lg:px-8 mt-4">
-      <div className="mx-auto max-w-screen-xl flex justify-between items-center bg-white lg:rounded-full bg-white/80 backdrop-blur-md md:shadow-sm max-md:border-none  border-2 border-gray-200  py-3 px-5 lg:px-8 transition-all">
+    <header className="absolute top-0 left-0 w-full z-50  lg:px-8 md:mt-4 mt-6">
+      <div className="mx-auto max-w-screen-xl flex justify-between items-center bg-white lg:rounded-full  backdrop-blur-md lg:shadow-sm max-lg:border-none shadow-none  border-2 border-gray-200  py-2 px-5 lg:px-8 transition-all">
         {/* Logo */}
-        <a href="/" className="lg:text-4xl md:text-3xl text-xl font-bold text-black">
+        <a href="/" className="lg:text-2xl md:text-xl text-lg font-semibold text-black">
           <span className="text-blue-500">Olale</span>kan
         </a>
 
@@ -45,8 +45,8 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="/"
-            className="border-2 bg-blue-500 text-white rounded-full py-2 px-5 text-base font-medium hover:bg-white hover:text-blue-500 hover:border-blue-500 transition-all"
+            href="https://drive.google.com/file/d/1ry2-7qFPugX0kU-YX-KOvZMLcGGO9zL4/view?usp=drive_link"
+            className="border-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full py-2 px-5 text-base font-medium hover:bg-white hover:text-blue-500 hover:border-blue-500 transition-all"
           >
             Download CV
           </a>

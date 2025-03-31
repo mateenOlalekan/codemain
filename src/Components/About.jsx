@@ -3,12 +3,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import profileImage from "../assets/me.jfif";
 import {
-  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt, FaGithub, FaNodeJs, FaBootstrap,
- FaBriefcase,FaUserGraduate,FaTools
+  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt,FaUserGraduate, FaGithub, FaNodeJs, FaBootstrap,
+ FaTools
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiTypescript, SiRedux, SiSass,SiMongodb, SiFirebase, SiFigma
 } from "react-icons/si";
+
 
 
 
@@ -37,6 +38,7 @@ const Portfolio = () => {
     { name: "SASS", icon: <SiSass className="text-pink-400 text-2xl" /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-indigo-600 text-2xl" /> },
     { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-2xl" /> },
+    { name: "Firebase", icon: <SiFirebase className="text-yellow-600 text-2xl" /> },
     { name: "Figma", icon: <SiFigma className="text-purple-400 text-2xl" /> },
   ];
 
@@ -45,13 +47,13 @@ const Portfolio = () => {
 
 
   return (
-    <div className="min-h-screen  flex items-center justify-center overflow-hidden py-12">
+    <div className="flex items-center justify-center overflow-hidden py-10" id="about">
       <div 
         className="w-full flex flex-col justify-center items-center px-6 lg:px-20" 
         data-aos="fade-up"
       >
         {/* Header with subtle background pattern */}
-        <div className="text-center p-5 border-gray-200 mb-3">
+        <div className="text-center p-5 border-gray-200 mb-10">
           <h1 className="text-4xl font-semibold tracking-tight text-gray-900 relative inline-block">
             About <span className="text-blue-600">ME</span>
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-blue-500 rounded-full"></div>
@@ -68,7 +70,7 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Developer" 
-                  className="w-full max-w-sm rounded-lg shadow-2xl object-cover filter grayscale group-hover:grayscale-0 transition duration-1000 group-hover:duration-200"
+                  className="w-full max-w-sm rounded-lg shadow-2xl object-cover"
                 />
                 
                 {/* Tech stack floating icons */}
@@ -87,7 +89,7 @@ const Portfolio = () => {
 
           {/* About Me Column */}
           <div className="lg:col-span-8 space-y-8" data-aos="fade-left" data-aos-delay="100">
-            <div className="bg-white rounded-xl shadow-lg p-4 space-y-4 border-6 border-slate-100">
+            <div className="bg-white rounded-xl shadow-lg p-6 space-y-4">
               <div className="flex items-center mb-4">
                 <span className="bg-blue-500 text-white p-3 rounded-full mr-4">
                   <FaUserGraduate className="text-xl" />
@@ -107,7 +109,7 @@ const Portfolio = () => {
             </div>
 
             {/* Skills Section */}
-            <div className="bg-white rounded-xl shadow-lg p-4 space-y-4 border-6 border-slate-100">
+            <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center mb-4">
                 <span className="bg-green-500 text-white p-3 rounded-full mr-4">
                   <FaTools className="text-xl" />

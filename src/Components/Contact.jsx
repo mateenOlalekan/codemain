@@ -11,7 +11,8 @@ import {
   FaTwitter, 
   FaGithub, 
   FaClock,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaArrowUp
 } from 'react-icons/fa';
 
 const ContactSection = () => {
@@ -26,8 +27,8 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState({ success: false, message: '' });
   const [touched, setTouched] = useState({});
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
-  // Reset form status after 5 seconds
   useEffect(() => {
     let timer;
     if (formStatus.success) {
@@ -38,14 +39,22 @@ const ContactSection = () => {
     return () => clearTimeout(timer);
   }, [formStatus]);
 
+  useEffect(() => {
+    const checkScroll = () => {
+      setShowScrollButton(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', checkScroll);
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
-    // Live validation
-    if (touched[name]) {
-      validateField(name, value);
-    }
+    if (touched[name]) validateField(name, value);
   };
 
   const handleBlur = (e) => {
@@ -56,7 +65,6 @@ const ContactSection = () => {
 
   const validateField = (name, value) => {
     let errorMessage = '';
-    
     switch (name) {
       case 'name':
         errorMessage = !value.trim() ? "Name is required" : 
@@ -77,43 +85,30 @@ const ContactSection = () => {
       default:
         break;
     }
-    
     setErrors(prev => ({ ...prev, [name]: errorMessage }));
     return !errorMessage;
   };
 
   const validateForm = () => {
-    const fields = ['name', 'email', 'subject', 'message'];
     let formIsValid = true;
-    let newErrors = {};
-    
-    fields.forEach(field => {
+    ['name', 'email', 'subject', 'message'].forEach(field => {
       const isValid = validateField(field, formData[field]);
       if (!isValid) formIsValid = false;
       setTouched(prev => ({ ...prev, [field]: true }));
     });
-    
-    setErrors(newErrors);
     return formIsValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (validateForm()) {
       setIsSubmitting(true);
-      
       try {
-        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        console.log('Form submitted:', formData);
         setFormStatus({ 
           success: true, 
           message: "Thank you! Your message has been sent successfully." 
         });
-        
-        // Reset form
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTouched({});
       } catch (error) {
@@ -127,16 +122,11 @@ const ContactSection = () => {
     }
   };
 
-  const isFieldValid = (field) => {
-    return touched[field] && !errors[field];
-  };
-
-  const isFieldInvalid = (field) => {
-    return touched[field] && errors[field];
-  };
+  const isFieldValid = (field) => touched[field] && !errors[field];
+  const isFieldInvalid = (field) => touched[field] && errors[field];
 
   return (
-    <section className="h-screen  flex flex-col " id="contact">
+    <section className="h-screen flex flex-col" id="contact">
       <div className="max-w-7xl mx-auto w-full px-4 py-10 flex-1 flex flex-col">
         <div className="text-center mb-8">
           <div className="inline-block text-blue-600 mb-2">
@@ -152,13 +142,11 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-12 gap-2 flex-1">
-          {/* Contact Information */}
           <div className="md:col-span-5 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 rounded-xl shadow-xl">
             <h3 className="text-xl font-bold mb-3 flex items-center">
               <FaRegCommentDots className="mr-3 text-blue-200" />
               Contact Information
             </h3>
-            
             <div className="space-y-6 mb-4">
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
@@ -169,7 +157,6 @@ const ContactSection = () => {
                   <p className="text-white font-medium">09130199317</p>
                 </div>
               </div>
-              
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
                   <FaEnvelope className="w-4 h-4 text-blue-100" />
@@ -179,7 +166,6 @@ const ContactSection = () => {
                   <p className="text-white font-medium">Olalekanbilal.com</p>
                 </div>
               </div>
-              
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
                   <FaMapMarkerAlt className="w-4 h-4 text-blue-100" />
@@ -190,9 +176,6 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            
-
-            
             <div className="mt-3">
               <h4 className="text-lg font-semibold mb-3">Connect With Me</h4>
               <div className="flex space-x-3">
@@ -209,7 +192,6 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="md:col-span-7 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
             <h3 className="text-xl font-bold mb-6 text-gray-900 flex items-center">
               <FaPaperPlane className="mr-3 text-blue-600" />
@@ -290,9 +272,7 @@ const ContactSection = () => {
                   )}
                 </div>
               </div>
-              
 
-              
               <div className="relative">
                 <label htmlFor="message" className="block text-gray-700 mb-1 font-medium">Message</label>
                 <textarea
@@ -349,6 +329,16 @@ const ContactSection = () => {
           </p>
         </footer>
       </div>
+
+      {showScrollButton && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 animate-bounce"
+        >
+          <FaArrowUp className="w-5 h-5" />
+        </button>
+      )}
     </section>
   );
 };
