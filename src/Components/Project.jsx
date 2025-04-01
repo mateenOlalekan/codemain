@@ -31,15 +31,15 @@ const projectsData = [
   },
   {
     id: "4",
-    title: "Creative Portfolio",
+    title: "Portfolio v1",
     description: "A platform for designers and artists to showcase work with customizable layouts and analytics.",
-    technologies: ["Next.js", "Tailwind CSS", "Vercel"],
-    liveUrl: "https://example.com/portfolio",
+    technologies: ["React.js", "Tailwind CSS", "Vercel"],
+    liveUrl: "https:matinport.vercel.app",
     githubUrl: "https://github.com/example/portfolio"
   },
   {
     id: "5",
-    title: "Smart Home Controller",
+    title: "Ludus Ecommerce",
     description: "An IoT dashboard for managing home devices, automation, and energy consumption tracking.",
     technologies: ["React", "Tailwind", "Vercel"],
     liveUrl: "https://example.com/smarthome",
@@ -47,9 +47,9 @@ const projectsData = [
   },
   {
     id: "6",
-    title: "Project Management",
+    title: "Kanban Board",
     description: "A full-fledged platform with task management, progress tracking, and collaboration tools.",
-    technologies: ["React", "Express", "MongoDB"],
+    technologies: ["React", "Tailwind", "Firebase"],
     liveUrl: "https://example.com/lms",
     githubUrl: "https://github.com/example/lms"
   },
@@ -82,7 +82,7 @@ function Project() {
             data-aos="fade-up"
             data-aos-delay={index * 100}
             data-aos-duration="800"
-            className="hover:scale-105 transition-transform duration-300"
+            className="hover:scale-105 cursor-pointer e duration-700 transition-all"
           >
             <ProjectCard project={project} index={index} />
           </div>
