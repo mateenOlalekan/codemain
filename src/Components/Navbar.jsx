@@ -48,8 +48,8 @@ const Navbar = () => {
           <a
           target="_blank"
           rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/1ry2-7qFPugX0kU-YX-KOvZMLcGGO9zL4/view?usp=drive_link"
-            className="border-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full py-2 px-5 text-base font-medium hover:bg-white hover:text-blue-500 hover:border-blue-500 transition-all"
+            href={resume}
+            className="border-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full py-2 px-5 text-base font-medium   transition-all"
           >
             Download CV
           </a>
@@ -82,7 +82,9 @@ const Navbar = () => {
           </a>
         ))}
         <a
-          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+            href={resume}
           onClick={toggleMenu}
           className="bg-blue-500 text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all"
         >
