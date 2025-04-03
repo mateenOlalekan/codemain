@@ -52,7 +52,15 @@ const projectsData = [
     technologies: ["React", "Tailwind", "Firebase"],
     liveUrl: "https://example.com/lms",
     githubUrl: "https://github.com/example/lms"
+  },{
+    id: "7",
+    title: "FurniCraft 🛋️",
+    description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury, tailored to elevate your living space.",
+    technologies: ["React", "Tailwind",],
+    liveUrl: "https://example.com/lms",
+    githubUrl: "https://github.com/example/lms"
   },
+
 ];
 
 function Project() {
