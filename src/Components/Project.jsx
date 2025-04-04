@@ -9,7 +9,7 @@ const projectsData = [
     id: "1",
     title: "WanderLust",
     description: "A travel agency web app helping users book trips, explore destinations, and manage travel plans.",
-    technologies: ["HTML/CSS/Javascript", "Bootstrap"],
+    technologies: ["Html/Css/Javascript", "Bootstrap"],
     liveUrl: "https://thewanderlusttravels.com/",
     githubUrl: "https://github.com/example/taskmanager"
   },
