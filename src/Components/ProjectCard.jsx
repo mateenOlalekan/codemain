@@ -20,7 +20,7 @@ const ProjectCard = ({ project, index }) => {
   };
 
   return (
-    <div className="group relative h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-md">
+    <div className="group relative h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-md hover:duration-700">
       <div className="flex h-full flex-col p-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-medium tracking-tight text-gray-900">
