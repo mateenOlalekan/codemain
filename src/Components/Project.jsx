@@ -34,7 +34,7 @@ const projectsData = [
     title: "Portfolio v1",
     description: "A platform for designers and artists to showcase work with customizable layouts and analytics.",
     technologies: ["React.js", "Tailwind CSS", "Vercel"],
-    liveUrl: "https:matinport.vercel.app",
+    liveUrl: "matinport.vercel.app",
     githubUrl: "https://github.com/example/portfolio"
   },
   {
@@ -57,7 +57,7 @@ const projectsData = [
     title: "FurniCraft 🛋️",
     description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury, tailored to elevate your living space.",
     technologies: ["React", "Tailwind",],
-    liveUrl: "https://example.com/lms",
+    liveUrl: "https://nazeem.vercel.app/",
     githubUrl: "https://github.com/example/lms"
   },
 
