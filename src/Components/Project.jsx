@@ -26,7 +26,7 @@ const projectsData = [
     title: "Weather App",
     description: "A real-time weather tracking application with detailed forecasts and location-based updates.",
     technologies: ["React", "REST API", "Firebase"],
-    liveUrl: "https://example.com/wellness",
+    liveUrl: "https://nazeem.vercel.app/",
     githubUrl: "https://github.com/example/wellness"
   },
   {
