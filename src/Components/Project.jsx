@@ -57,7 +57,7 @@ const projectsData = [
     title: "FurniCraft 🛋️",
     description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury, tailored to elevate your living space.",
     technologies: ["React", "Tailwind",],
-    liveUrl: "https://nazeem.vercel.app/",
+    liveUrl: "https://furnicraft-sand.vercel.app/",
     githubUrl: "https://github.com/example/lms"
   },
 
