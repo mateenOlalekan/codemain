@@ -60,7 +60,14 @@ const projectsData = [
     liveUrl: "https://furnicraft-sand.vercel.app/",
     githubUrl: "https://github.com/example/lms"
   },
-
+  {
+    id: "8",
+    title: "FurniCraft 🛋️",
+    description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury, tailored to elevate your living space.",
+    technologies: ["React", "Tailwind",],
+    liveUrl: "https://furnicraft-sand.vercel.app/",
+    githubUrl: "https://github.com/example/lms"
+  },
 ];
 
 function Project() {
