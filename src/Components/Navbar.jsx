@@ -1,15 +1,49 @@
-import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { useState, useEffect, useRef } from "react";
+import { FaBars, FaTimes, FaDownload } from "react-icons/fa";
+import { Codesandbox } from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const navbarRef = useRef(null);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 50);
+      
+      // Detect which section is in view
+      const sections = ["home", "project", "about", "contact"];
+      const sectionElements = sections.map(id => 
+        document.getElementById(id) || document.querySelector(`[data-section="${id}"]`)
+      );
+      
+      const currentSection = sectionElements.reduce((current, section, index) => {
+        if (!section) return current;
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          return sections[index];
+        }
+        return current;
+      }, "home");
+      
+      setActiveSection(currentSection);
+    };
+
     const handleResize = () => {
       if (window.innerWidth >= 1024) setIsMobileMenuOpen(false);
     };
+
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -20,38 +54,90 @@ const Navbar = () => {
   const resume = "https://drive.google.com/file/d/1ry2-7qFPugX0kU-YX-KOvZMLcGGO9zL4/view?usp=sharing";
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Project", href: "#project" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "#home", id: "home" },
+    { name: "Projects", href: "#project", id: "project" },
+    { name: "About", href: "#about", id: "about" },
+    { name: "Contact", href: "#contact", id: "contact" },
   ];
 
+  const scrollToSection = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId) || document.querySelector(`[data-section="${targetId}"]`);
+    
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
+
   return (
-    <header className="absolute top-0 left-0 w-full z-50  lg:px-8 md:mt-4 mt-6">
-      <div className="mx-auto max-w-screen-xl flex justify-between items-center bg-white lg:rounded-full  backdrop-blur-md lg:shadow-sm max-lg:border-none shadow-none  border-2 border-gray-200  py-2 px-5 lg:px-8 transition-all">
+    <header 
+      ref={navbarRef}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "py-0" : "py-4"
+      }`}
+    >
+      <div 
+        className={`mx-auto max-w-7xl flex justify-between items-center px-4 sm:px-6 lg:px-8 ${
+          scrolled 
+            ? "bg-white/95 backdrop-blur-md shadow-lg rounded-b-xl" 
+            : "bg-transparent backdrop-blur-0  rounded-t-lg"
+        }  transition-all duration-300 py-4`}
+      >
         {/* Logo */}
-        <a href="/" className="lg:text-2xl md:text-xl text-lg font-semibold text-black">
-          <span className="text-blue-500">Olale</span>kan
-        </a>
+        <div className="flex justify-center items-center gap-2 group">
+          <div className="relative animate-spin">
+            <Codesandbox size={30} className={`${scrolled   ? 'text-blue-600' : 'text-blue-600'}  transition-all group-hover:animate-spin duration-500 group-hover:rotate-90`} />
+            <div className="absolute -inset-1 bg-blue-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-300"></div>
+          </div>
+          <div className="flex text-3xl items-center">
+            <span className={`${scrolled ? 'text-gray-900' : 'text-gray-900'} font-bold`}>Ola</span>
+            <span className="text-blue-600 font-bold">lekan</span>  
+          </div>
+        </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center  gap-8">
-          {navLinks.map(({ name, href }) => (
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map(({ name, href, id }) => (
             <a
               key={name}
               href={href}
-              className="relative text-base font-medium text-gray-900 hover:text-blue-600 transition-all after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-600 after:bottom-[-3px] after:left-0 after:transition-all hover:after:w-full"
+              onClick={(e) => scrollToSection(e, href)}
+              className={`relative text-base font-medium ${
+                activeSection === id 
+                  ? "text-blue-600" 
+                  : scrolled ? "text-gray-800 hover:text-blue-600" : "text-gray-800 hover:text-blue-600"
+              } transition-all duration-300 px-2 py-1`}
             >
               {name}
+              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform origin-left transition-transform duration-300 ${
+                activeSection === id ? "scale-x-100" : "scale-x-0"
+              }`}></span>
             </a>
           ))}
           <a
-          target="_blank"
-          rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
             href={resume}
-            className="border-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full py-2 px-5 text-base font-medium   transition-all"
+            className={`flex items-center gap-2 ${
+              scrolled 
+                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white" 
+                : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+            } hover:from-blue-700 hover:to-indigo-700 rounded-full py-2 px-5 text-base font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md`}
           >
-            Download CV
+            <FaDownload className="text-sm" />
+            <span>Resume</span>
           </a>
         </nav>
 
@@ -59,7 +145,9 @@ const Navbar = () => {
         <button
           onClick={toggleMenu}
           aria-label="Toggle Menu"
-          className="lg:hidden text-2xl text-blue-600"
+          className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full ${
+            scrolled ? "bg-blue-100 text-blue-600" : "bg-white/30 backdrop-blur-md text-blue-600"
+          } transition-all hover:bg-blue-200`}
         >
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
@@ -67,29 +155,67 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-white flex flex-col items-center justify-center gap-6 transform transition-transform duration-300 ${
-          isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+        className={`fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-blue-50 flex flex-col items-center justify-center gap-8 transform transition-all duration-500 ${
+          isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         } z-40`}
       >
-        {navLinks.map(({ name, href }) => (
-          <a
-            key={name}
-            href={href}
-            onClick={toggleMenu}
-            className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-all"
-          >
-            {name}
-          </a>
-        ))}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-            href={resume}
+        <div className="absolute top-6 left-6 flex items-center gap-2">
+          <Codesandbox className="text-blue-600" />
+          <div className="flex">
+            <span className="text-gray-900 font-bold">Ola</span>
+            <span className="text-blue-600 font-bold">Lekan</span>  
+          </div>
+        </div>
+        
+        <button
           onClick={toggleMenu}
-          className="bg-blue-500 text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all"
+          className="absolute top-6 right-6 flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 transition-all hover:bg-blue-200"
         >
-          Download CV
-        </a>
+          <FaTimes />
+        </button>
+        
+        <div className="flex flex-col items-center gap-8">
+          {navLinks.map(({ name, href, id }, index) => (
+            <a
+              key={name}
+              href={href}
+              onClick={(e) => scrollToSection(e, href)}
+              className={`text-xl font-medium ${
+                activeSection === id ? "text-blue-600" : "text-gray-800"
+              } hover:text-blue-600 transition-all transform hover:scale-110`}
+              style={{ 
+                transitionDelay: `${index * 100}ms`,
+                opacity: isMobileMenuOpen ? 1 : 0,
+                transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)" 
+              }}
+            >
+              {name}
+            </a>
+          ))}
+        </div>
+        
+        <div 
+          className="mt-8"
+          style={{ 
+            transitionDelay: "400ms",
+            opacity: isMobileMenuOpen ? 1 : 0,
+            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)" 
+          }}
+        >
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={resume}
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-8 rounded-full text-lg font-medium hover:shadow-lg transition-all transform hover:-translate-y-1"
+          >
+            <FaDownload />
+            <span>Download Resume</span>
+          </a>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute bottom-10 left-10 w-64 h-64 bg-blue-100 rounded-full filter blur-3xl opacity-20" />
+        <div className="absolute top-20 right-10 w-40 h-40 bg-indigo-100 rounded-full filter blur-3xl opacity-20" />
       </div>
     </header>
   );

@@ -10,12 +10,12 @@ import {
   FaLinkedinIn, 
   FaTwitter, 
   FaGithub, 
-  FaClock,
   FaExclamationTriangle,
   FaArrowUp
 } from 'react-icons/fa';
 
 const ContactSection = () => {
+  // Form state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,14 +24,15 @@ const ContactSection = () => {
   });
   
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState({ success: false, message: '' });
-  const [touched, setTouched] = useState({});
   const [showScrollButton, setShowScrollButton] = useState(false);
 
+  // Clear form status message after 5 seconds
   useEffect(() => {
     let timer;
-    if (formStatus.success) {
+    if (formStatus.message) {
       timer = setTimeout(() => {
         setFormStatus({ success: false, message: '' });
       }, 5000);
@@ -39,95 +40,148 @@ const ContactSection = () => {
     return () => clearTimeout(timer);
   }, [formStatus]);
 
+  // Scroll button visibility
   useEffect(() => {
-    const checkScroll = () => {
+    function handleScroll() {
       setShowScrollButton(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', checkScroll);
-    return () => window.removeEventListener('scroll', checkScroll);
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+  // Form handlers
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    if (touched[name]) validateField(name, value);
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    
+    // Validate field if it's been touched
+    if (touched[name]) {
+      validateField(name, value);
+    }
   };
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    setTouched({ ...touched, [name]: true });
+    setTouched({
+      ...touched,
+      [name]: true
+    });
     validateField(name, value);
   };
 
+  // Field validation
   const validateField = (name, value) => {
     let errorMessage = '';
-    switch (name) {
-      case 'name':
-        errorMessage = !value.trim() ? "Name is required" : 
-                      value.length < 2 ? "Name must be at least 2 characters" : '';
-        break;
-      case 'email':
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        errorMessage = !value.trim() ? "Email is required" : 
-                      !emailPattern.test(value) ? "Please enter a valid email address" : '';
-        break;
-      case 'subject':
-        errorMessage = !value.trim() ? "Subject is required" : '';
-        break;
-      case 'message':
-        errorMessage = !value.trim() ? "Message is required" : 
-                      value.length < 10 ? "Message must be at least 10 characters long" : '';
-        break;
-      default:
-        break;
+    
+    if (name === 'name') {
+      if (!value.trim()) {
+        errorMessage = "Name is required";
+      } else if (value.length < 2) {
+        errorMessage = "Name must be at least 2 characters";
+      }
     }
-    setErrors(prev => ({ ...prev, [name]: errorMessage }));
+    
+    else if (name === 'email') {
+      if (!value.trim()) {
+        errorMessage = "Email is required";
+      } else {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) {
+          errorMessage = "Please enter a valid email address";
+        }
+      }
+    }
+    
+    else if (name === 'subject') {
+      if (!value.trim()) {
+        errorMessage = "Subject is required";
+      }
+    }
+    
+    else if (name === 'message') {
+      if (!value.trim()) {
+        errorMessage = "Message is required";
+      } else if (value.length < 10) {
+        errorMessage = "Message must be at least 10 characters long";
+      }
+    }
+    
+    setErrors({
+      ...errors,
+      [name]: errorMessage
+    });
+    
     return !errorMessage;
   };
 
-  const validateForm = () => {
-    let formIsValid = true;
-    ['name', 'email', 'subject', 'message'].forEach(field => {
-      const isValid = validateField(field, formData[field]);
-      if (!isValid) formIsValid = false;
-      setTouched(prev => ({ ...prev, [field]: true }));
-    });
-    return formIsValid;
-  };
-
+  // Form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    
+    // Check all fields
+    let formIsValid = true;
+    const newTouched = {};
+    
+    // Mark all fields as touched and validate
+    Object.keys(formData).forEach(field => {
+      newTouched[field] = true;
+      const isValid = validateField(field, formData[field]);
+      if (!isValid) formIsValid = false;
+    });
+    
+    setTouched(newTouched);
+    
+    // Submit if valid
+    if (formIsValid) {
       setIsSubmitting(true);
+      
       try {
+        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        setFormStatus({ 
-          success: true, 
-          message: "Thank you! Your message has been sent successfully." 
+        
+        // Success
+        setFormStatus({
+          success: true,
+          message: "Thank you! Your message has been sent successfully."
         });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
         setTouched({});
+        
       } catch (error) {
-        setFormStatus({ 
-          success: false, 
-          message: "Oops! Something went wrong. Please try again later." 
+        // Error
+        setFormStatus({
+          success: false,
+          message: "Oops! Something went wrong. Please try again later."
         });
-      } finally {
-        setIsSubmitting(false);
       }
+      
+      setIsSubmitting(false);
     }
   };
 
+  // Helper functions
   const isFieldValid = (field) => touched[field] && !errors[field];
   const isFieldInvalid = (field) => touched[field] && errors[field];
+  
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <section className="h-screen flex flex-col" id="contact">
+    <section className="min-h-screen flex flex-col" id="contact">
       <div className="max-w-7xl mx-auto w-full px-4 py-10 flex-1 flex flex-col">
+        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-block text-blue-600 mb-2">
             <FaRegCommentDots className="text-3xl mx-auto" />
@@ -141,13 +195,16 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-2 flex-1">
+        <div className="grid md:grid-cols-12 gap-4 flex-1">
+          {/* Contact Info Card */}
           <div className="md:col-span-5 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 rounded-xl shadow-xl">
-            <h3 className="text-xl font-bold mb-3 flex items-center">
+            <h3 className="text-xl font-bold mb-5 flex items-center">
               <FaRegCommentDots className="mr-3 text-blue-200" />
               Contact Information
             </h3>
-            <div className="space-y-6 mb-4">
+            
+            <div className="space-y-6 mb-8">
+              {/* Phone */}
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
                   <FaPhoneAlt className="w-4 h-4 text-blue-100" />
@@ -157,6 +214,8 @@ const ContactSection = () => {
                   <p className="text-white font-medium">09130199317</p>
                 </div>
               </div>
+              
+              {/* Email */}
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
                   <FaEnvelope className="w-4 h-4 text-blue-100" />
@@ -166,6 +225,8 @@ const ContactSection = () => {
                   <p className="text-white font-medium">Olalekanbilal.com</p>
                 </div>
               </div>
+              
+              {/* Location */}
               <div className="flex items-start">
                 <div className="bg-blue-500/30 p-2 rounded-lg mr-3">
                   <FaMapMarkerAlt className="w-4 h-4 text-blue-100" />
@@ -176,8 +237,10 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-3">
-              <h4 className="text-lg font-semibold mb-3">Connect With Me</h4>
+            
+            {/* Social Links */}
+            <div className="mt-6">
+              <h4 className="text-lg font-semibold mb-4">Connect With Me</h4>
               <div className="flex space-x-3">
                 <a href="#" className="bg-blue-500/30 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white transition-all duration-300 group">
                   <FaLinkedinIn className="text-white group-hover:text-blue-600" />
@@ -192,12 +255,14 @@ const ContactSection = () => {
             </div>
           </div>
 
+          {/* Contact Form */}
           <div className="md:col-span-7 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
             <h3 className="text-xl font-bold mb-6 text-gray-900 flex items-center">
               <FaPaperPlane className="mr-3 text-blue-600" />
               Send Me a Message
             </h3>
             
+            {/* Form Status Message */}
             {formStatus.message && (
               <div className={`mb-4 rounded-lg p-3 flex items-center ${formStatus.success ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
                 {formStatus.success ? 
@@ -208,10 +273,14 @@ const ContactSection = () => {
               </div>
             )}
             
+            {/* Contact Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
+                {/* Name Field */}
                 <div className="relative">
-                  <label htmlFor="name" className="block text-gray-700 mb-1 font-medium">Full Name</label>
+                  <label htmlFor="name" className="block text-gray-700 mb-1 font-medium">
+                    Full Name
+                  </label>
                   <div className="relative">
                     <FaUser className={`absolute left-3 top-1/2 -translate-y-1/2 ${
                       isFieldInvalid('name') ? 'text-red-400' : 
@@ -241,8 +310,11 @@ const ContactSection = () => {
                   )}
                 </div>
                 
+                {/* Email Field */}
                 <div className="relative">
-                  <label htmlFor="email" className="block text-gray-700 mb-1 font-medium">Email Address</label>
+                  <label htmlFor="email" className="block text-gray-700 mb-1 font-medium">
+                    Email Address
+                  </label>
                   <div className="relative">
                     <FaEnvelope className={`absolute left-3 top-1/2 -translate-y-1/2 ${
                       isFieldInvalid('email') ? 'text-red-400' : 
@@ -273,8 +345,36 @@ const ContactSection = () => {
                 </div>
               </div>
 
+              {/* Subject Field */}
               <div className="relative">
-                <label htmlFor="message" className="block text-gray-700 mb-1 font-medium">Message</label>
+                <label htmlFor="subject" className="block text-gray-700 mb-1 font-medium">
+                  Subject
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="What is this regarding?"
+                  className={`w-full bg-gray-50 border rounded-lg py-2 px-4 focus:outline-none focus:ring-2 transition-all duration-200 ${
+                    isFieldInvalid('subject') ? 'border-red-300 focus:ring-red-200 text-red-700' : 
+                    isFieldValid('subject') ? 'border-green-300 focus:ring-green-200' : 'border-gray-200 focus:ring-blue-200'
+                  }`}
+                />
+                {errors.subject && touched.subject && (
+                  <p className="text-red-600 text-sm mt-1 flex items-center">
+                    <FaExclamationTriangle className="mr-1 text-xs" /> {errors.subject}
+                  </p>
+                )}
+              </div>
+
+              {/* Message Field */}
+              <div className="relative">
+                <label htmlFor="message" className="block text-gray-700 mb-1 font-medium">
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -282,7 +382,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Tell me about your project, questions, or any message you'd like to share..."
-                  className={`w-full bg-gray-50 border rounded-lg py-2 px-4 focus:outline-none focus:ring-2 transition-all duration-200 ${
+                  className={`w-full bg-gray-50 border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 transition-all duration-200 ${
                     isFieldInvalid('message') ? 'border-red-300 focus:ring-red-200 text-red-700' : 
                     isFieldValid('message') ? 'border-green-300 focus:ring-green-200' : 'border-gray-200 focus:ring-blue-200'
                   }`}
@@ -295,12 +395,13 @@ const ContactSection = () => {
                 )}
               </div>
               
+              {/* Submit Button */}
               <div>
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className={`bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center hover:bg-blue-700 transition-colors font-semibold ${
-                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  className={`bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center hover:bg-blue-700 transition-colors font-semibold ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-md'
                   }`}
                 >
                   {isSubmitting ? (
@@ -322,6 +423,7 @@ const ContactSection = () => {
           </div>
         </div>
         
+        {/* Footer */}
         <footer className="mt-8 text-center">
           <div className="h-px w-full bg-gray-200 mb-4"></div>
           <p className="text-gray-600 text-sm">
@@ -330,11 +432,11 @@ const ContactSection = () => {
         </footer>
       </div>
 
+      {/* Scroll to Top Button */}
       {showScrollButton && (
         <button
           onClick={scrollToTop}
-          aria-label="Scroll to top"
-          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 animate-bounce"
+          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 z-10"
         >
           <FaArrowUp className="w-5 h-5" />
         </button>
