@@ -146,7 +146,7 @@ const AboutMe = () => {
                     data-aos-delay={200 + (index * 100)}
                   >
                     
-                    <div className="grid grid-cols-3 sm:grid-cols-8 gap-2">
+                    <div className="grid lg:grid-cols-6 grid-cols-4 gap-2">
                       {category.skills.map((tech) => (
                         <div 
                           key={tech.name}
