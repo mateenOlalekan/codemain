@@ -179,7 +179,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col" id="contact">
+    <section className="h-screen flex flex-col" id="contact">
       <div className="max-w-7xl mx-auto w-full px-4 py-10 flex-1 flex flex-col">
         {/* Header */}
         <div className="text-center mb-8">

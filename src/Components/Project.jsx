@@ -33,21 +33,31 @@ const projectsData = [
     category: "Utility",
     featured: false,
     liveUrl: "https://nazeem.vercel.app/",
-    githubUrl: "https://github.com/example/wellness",
+    githubUrl: "https://github.com/mateenOlalekan/weatherapp",
   },
   {
     id: "4",
+    title: "Verder",
+    description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury.",
+    technologies: ["React", "Tailwind"],
+    category: "E-commerce",
+    featured: true,
+    liveUrl: "https://verdecraft.vercel.app/",
+    githubUrl: "https://github.com/example/furniture",
+  },
+  {
+    id: "5",
     title: "Portfolio v1",
     description: "A platform for designers and artists to showcase work with customizable layouts and analytics.",
     technologies: ["React.js", "Tailwind CSS", "Vercel"],
     category: "Portfolio",
     featured: true,
-    liveUrl: "matinport.vercel.app",
-    githubUrl: "https://github.com/example/portfolio",
+    liveUrl: "https://matinport.vercel.app/",
+    githubUrl: "https://github.com/mateenOlalekan/DevPortFolio_v1",
   },
   {
-    id: "5",
-    title: "Ludus Ecommerce",
+    id: "6",
+    title: "Luxe Mart",
     description: "An IoT dashboard for managing home devices, automation, and energy consumption tracking.",
     technologies: ["React", "Tailwind", "Vercel"],
     category: "E-commerce",
@@ -56,7 +66,7 @@ const projectsData = [
     githubUrl: "https://github.com/example/smarthome",
   },
   {
-    id: "6",
+    id: "7",
     title: "Kanban Board",
     description: "A full-fledged platform with task management, progress tracking, and collaboration tools.",
     technologies: ["React", "Tailwind", "Firebase"],
@@ -64,16 +74,6 @@ const projectsData = [
     featured: false,
     liveUrl: "https://example.com/lms",
     githubUrl: "https://github.com/example/lms",
-  },
-  {
-    id: "7",
-    title: "FurniCraft",
-    description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury.",
-    technologies: ["React", "Tailwind"],
-    category: "E-commerce",
-    featured: true,
-    liveUrl: "https://furnicraft-sand.vercel.app/",
-    githubUrl: "https://github.com/example/furniture",
   },
   {
     id: "8",
@@ -89,11 +89,9 @@ const projectsData = [
 
 const ProjectsShowcase = () => {
   const [hoveredId, setHoveredId] = useState(null);
-  const [visibleProjects, setVisibleProjects] = useState(6);
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    // Initialize AOS
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
@@ -102,7 +100,6 @@ const ProjectsShowcase = () => {
       anchorPlacement: 'top-bottom'
     });
 
-    // Add intersection observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -135,18 +132,13 @@ const ProjectsShowcase = () => {
       }
     },
     hover: { 
-      y: -15, 
-      boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+      y: -5, 
+      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
       transition: { 
         type: "spring", 
         stiffness: 300, 
         damping: 15 
       }
-    },
-    exit: { 
-      opacity: 0, 
-      y: 20, 
-      transition: { duration: 0.3 } 
     }
   };
 
@@ -160,18 +152,6 @@ const ProjectsShowcase = () => {
     }
   };
 
-  const buttonVariants = {
-    hover: { 
-      scale: 1.05,
-      transition: { 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 10 
-      }
-    },
-    tap: { scale: 0.95 }
-  };
-
   const iconVariants = {
     initial: { scale: 0 },
     animate: { 
@@ -183,7 +163,7 @@ const ProjectsShowcase = () => {
       }
     },
     hover: {
-      scale: 1.2,
+      scale: 1.1,
       transition: {
         type: "spring",
         stiffness: 400,
@@ -193,68 +173,67 @@ const ProjectsShowcase = () => {
   };
 
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="max-w-3xl mx-auto mb-16 text-center" data-aos="fade-up">
-          <h2 className="text-4xl font-bold mb-4 text-black">My Projects</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-black mb-8">A showcase of my work across various technologies and domains.</p>
+    <div className="bg-white" id="project">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto mb-12 text-center" data-aos="fade-up">
+          <h2 className="text-3xl font-bold mb-4 text-black">My Projects</h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-sm">A showcase of my work across various technologies and domains.</p>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           <AnimatePresence>
-            {projectsData.slice(0, visibleProjects).map((project, index) => (
+            {projectsData.map((project, index) => (
               <motion.div 
                 key={project.id}
-                className="project-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
+                className="project-card bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100"
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                exit="exit"
                 whileHover="hover"
                 data-aos={index % 4 === 0 ? "fade-right" : index % 4 === 3 ? "fade-left" : "fade-up"}
-                data-aos-delay={100 * (index % 4)}
+                data-aos-delay={50 * (index % 4)}
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Blue accent bar */}
-                <div className="h-2 w-full bg-blue-600"></div>
+                <div className="h-1 w-full bg-blue-500"></div>
                 
-                <div className="p-6">
+                <div className="p-4">
                   {/* Category badge */}
-                  <div className="mb-4 flex justify-between items-center">
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-600">
+                  <div className="mb-3 flex justify-between items-center">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-blue-50 text-blue-600">
                       {project.category}
                     </span>
                     
                     {project.featured && (
-                      <span className="text-xs font-medium text-blue-600">
+                      <span className="text-xs font-medium text-blue-500">
                         Featured
                       </span>
                     )}
                   </div>
                   
                   {/* Project title */}
-                  <h3 className="text-xl font-bold mb-2 text-black">
+                  <h3 className="text-lg font-bold mb-2 text-gray-800">
                     {project.title}
                   </h3>
                   
                   {/* Project description */}
-                  <p className="text-black text-sm mb-4">
+                  <p className="text-gray-600 text-xs mb-3 line-clamp-2">
                     {project.description}
                   </p>
                   
                   {/* Technology badges */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-1 mb-4">
                     {project.technologies.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600"
+                        className="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-600"
                       >
                         {tech}
                       </span>
@@ -262,43 +241,43 @@ const ProjectsShowcase = () => {
                   </div>
                   
                   {/* Action links */}
-                  <div className="flex justify-between items-center mt-4">
-                    <div className="flex space-x-3">
+                  <div className="flex justify-between items-center">
+                    <div className="flex space-x-2">
                       <motion.a 
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
+                        className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
                         variants={iconVariants}
                         initial="initial"
                         animate="animate"
                         whileHover="hover"
                         aria-label="View GitHub repository"
                       >
-                        <FaGithub size={16} />
+                        <FaGithub size={12} />
                       </motion.a>
                       <motion.a 
                         href={project.liveUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
+                        className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
                         variants={iconVariants}
                         initial="initial"
                         animate="animate"
                         whileHover="hover"
                         aria-label="View live project"
                       >
-                        <FaExternalLinkAlt size={14} />
+                        <FaExternalLinkAlt size={11} />
                       </motion.a>
                     </div>
                     
                     <motion.button
-                      className="text-xs font-medium rounded-lg px-3 py-2 bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors flex items-center"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      className="text-xs font-medium rounded px-2 py-1 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors flex items-center"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      <FaCode className="mr-2" />
-                      View Details
+                      <FaCode className="mr-1" size={10} />
+                      Details
                     </motion.button>
                   </div>
                 </div>
@@ -306,20 +285,6 @@ const ProjectsShowcase = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-        
-        {visibleProjects < projectsData.length && (
-          <div className="mt-16 text-center" data-aos="fade-up">
-            <motion.button
-              onClick={() => setVisibleProjects(projectsData.length)}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium shadow-md hover:bg-blue-700 transition-colors"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Load More Projects
-            </motion.button>
-          </div>
-        )}
       </div>
     </div>
   );

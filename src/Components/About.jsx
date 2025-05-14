@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
   FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt, FaUserGraduate, 
-  FaGithub, FaNodeJs, FaBootstrap, FaTools, FaCode, FaLaptopCode, FaServer
+  FaGithub, FaNodeJs, FaBootstrap, FaCode, FaLaptopCode
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiTypescript, SiRedux, SiSass, SiMongodb, 
@@ -11,155 +11,125 @@ import {
 } from "react-icons/si";
 
 const AboutMe = () => {
-  const [isInView, setIsInView] = useState(false);
   const aboutSectionRef = useRef(null);
-  const skillsContainerRef = useRef(null);
 
-  // Initialize AOS animation library with enhanced settings
   useEffect(() => {
     AOS.init({
       duration: 800,
       easing: "ease-out-cubic",
-      once: false,
-      mirror: true,
-      anchorPlacement: "top-bottom",
+      once: true,
+      mirror: false,
     });
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
+      ([entry]) => entry.isIntersecting,
+      { threshold: 0.1 }
     );
 
-    if (aboutSectionRef.current) {
-      observer.observe(aboutSectionRef.current);
-    }
-
-    return () => {
-      if (aboutSectionRef.current) {
-        observer.unobserve(aboutSectionRef.current);
-      }
-    };
+    if (aboutSectionRef.current) observer.observe(aboutSectionRef.current);
+    return () => aboutSectionRef.current && observer.unobserve(aboutSectionRef.current);
   }, []);
 
-  // Skills with icons from react-icons
   const technologies = [
-    { name: "HTML", icon: <FaHtml5 className="text-orange-500 text-2xl" /> },
-    { name: "CSS", icon: <FaCss3Alt className="text-blue-500 text-2xl" /> },
-    { name: "JavaScript", icon: <FaJsSquare className="text-yellow-500 text-2xl" /> },
-    { name: "TypeScript", icon: <SiTypescript className="text-blue-600 text-2xl" /> },
-    { name: "React", icon: <FaReact className="text-blue-400 text-2xl" /> },
-    { name: "Redux", icon: <SiRedux className="text-purple-500 text-2xl" /> },
-    { name: "Next.js", icon: <SiNextdotjs className="text-black text-2xl" /> },
-    { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400 text-2xl" /> },
-    { name: "SASS", icon: <SiSass className="text-pink-400 text-2xl" /> },
-    { name: "Bootstrap", icon: <FaBootstrap className="text-indigo-600 text-2xl" /> },
-    { name: "Node.js", icon: <FaNodeJs className="text-green-500 text-2xl" /> },
-    { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-2xl" /> },
-    { name: "Firebase", icon: <SiFirebase className="text-yellow-600 text-2xl" /> },
-    { name: "Git", icon: <FaGitAlt className="text-red-500 text-2xl" /> },
-    { name: "GitHub", icon: <FaGithub className="text-gray-800 text-2xl" /> },
-    { name: "Figma", icon: <SiFigma className="text-purple-400 text-2xl" /> },
+    { name: "HTML", icon: <FaHtml5 />, color: "text-orange-500", bg: "bg-orange-50/80" },
+    { name: "CSS", icon: <FaCss3Alt />, color: "text-blue-500", bg: "bg-blue-50/80" },
+    { name: "JavaScript", icon: <FaJsSquare />, color: "text-yellow-500", bg: "bg-yellow-50/80" },
+    { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600", bg: "bg-blue-50/80" },
+    { name: "React", icon: <FaReact />, color: "text-blue-400", bg: "bg-blue-50/80" },
+    { name: "Redux", icon: <SiRedux />, color: "text-purple-500", bg: "bg-purple-50/80" },
+    { name: "Next.js", icon: <SiNextdotjs />, color: "text-black", bg: "bg-gray-100/80" },
+    { name: "Tailwind", icon: <SiTailwindcss />, color: "text-teal-400", bg: "bg-teal-50/80" },
+    { name: "SASS", icon: <SiSass />, color: "text-pink-400", bg: "bg-pink-50/80" },
+    { name: "Bootstrap", icon: <FaBootstrap />, color: "text-indigo-600", bg: "bg-indigo-50/80" },
+    { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600", bg: "bg-green-50/80" },
+    { name: "Firebase", icon: <SiFirebase />, color: "text-yellow-600", bg: "bg-yellow-50/80" },
+    { name: "Git", icon: <FaGitAlt />, color: "text-red-500", bg: "bg-red-50/80" },
+    { name: "GitHub", icon: <FaGithub />, color: "text-gray-800", bg: "bg-gray-100/80" },
+    { name: "Figma", icon: <SiFigma />, color: "text-purple-400", bg: "bg-purple-50/80" },
   ];
 
-  // Group skills for better organization
-  const skillCategories = [
-    {
-      title: "Frontend",
-      icon: <FaLaptopCode className="text-xl" />,
-      skills: technologies.filter(tech => 
-        ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Redux", "Next.js", "Tailwind", "SASS", "Bootstrap","Node.js", "MongoDB", "Firebase","Git", "GitHub", "Figma"].includes(tech.name)
-      )
-    },
-  ];
+  const frontendSkills = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Redux", "Next.js", "Tailwind", "SASS", "Bootstrap", "Node.js", "MongoDB", "Firebase", "Git", "GitHub", "Figma"];
 
   return (
     <section 
       ref={aboutSectionRef} 
-      className="relative min-h-screen py-12 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
+      className="relative  py-20 bg-gradient-to-b from-white to-blue-50/30"
       id="about"
-      data-section="about"
     >
-      {/* Background decorative elements */}
-      <div className="absolute top-40 -right-20 w-80 h-80 bg-blue-100 rounded-full filter blur-3xl opacity-20" />
-      <div className="absolute bottom-40 -left-20 w-80 h-80 bg-indigo-100 rounded-full filter blur-3xl opacity-20" />
+      {/* Floating gradient blobs */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full filter blur-[100px] opacity-20 -z-10" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-indigo-100 rounded-full filter blur-[100px] opacity-20 -z-10" />
       
-      <div 
-        className="container mx-auto px-6 lg:px-10 pt-10" 
-        data-aos="fade-up"
-      >
+      <div className=" px-5 lg:px-10">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 relative inline-block">
-            About <span className="text-blue-600">Me</span>
-            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transform transition-transform duration-300"></div>
-          </h1>
+        <div className="text-center mb-16" data-aos="fade-up">
+          <span className="inline-block text-sm font-medium text-blue-600 mb-3 px-3 py-1 bg-blue-50 rounded-full">
+            ABOUT ME
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Let me <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">introduce</span> myself
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto rounded-full" />
         </div>
 
-        {/* Main Content with two columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto">
-          {/* About Me Column */}
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {/* About Card */}
           <div 
-            className="lg:col-span-6" 
+            className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/50 hover:shadow-md transition-all duration-300 backdrop-blur-sm"
             data-aos="fade-right"
-            data-aos-delay="100"
           >
-            <div className="bg-white rounded-xl shadow-lg p-8 space-y-6 border border-gray-100 h-full">
-              <div className="flex items-center mb-2">
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-full mr-4">
-                  <FaUserGraduate className="text-xl" />
-                </span>
-                <h2 className="text-2xl font-bold text-gray-800">Who I Am</h2>
+            <div className="flex items-center mb-6">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-blue-100 rounded-xl blur opacity-75"></div>
+                <div className="relative bg-white p-3 rounded-xl shadow-sm border border-gray-200/50">
+                  <FaUserGraduate className="text-blue-600 text-xl" />
+                </div>
               </div>
-              
-              <p className="text-gray-700 leading-relaxed md:text-[14px]">
+              <h3 className="text-2xl font-bold text-gray-800 ml-4">Who I Am</h3>
+            </div>
+            <div className="space-y-4">
+              <p className="text-gray-600 leading-relaxed">
                 I'm a passionate web developer and graphic designer currently pursuing my undergraduate degree in graphics design. With a keen eye for detail and a love for clean code, I specialize in creating engaging digital experiences that combine aesthetics with functionality.
-                I enjoy building everything from small business sites to interactive web applications, focusing on responsive design, performance, and accessibility. My approach combines modern design principles with robust technical implementation to deliver exceptional user experiences.
               </p>
-              
-
-
+              <p className="text-gray-600 leading-relaxed">
+                I enjoy building everything from small business sites to interactive web applications, focusing on responsive design, performance, and accessibility.
+              </p>
             </div>
           </div>
 
-          {/* Technical Skills Column */}
+          {/* Skills Card */}
           <div 
-            className="lg:col-span-6" 
+            className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/50 hover:shadow-md transition-all duration-300 backdrop-blur-sm"
             data-aos="fade-left"
-            data-aos-delay="200"
-            ref={skillsContainerRef}
           >
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 h-full">
-              <div className="flex items-center mb-2">
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-full mr-4">
-                  <FaCode className="text-xl" />
-                </span>
-                <h2 className="text-2xl font-bold text-gray-800">Technical Skills</h2>
+            <div className="flex items-center mb-6">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-blue-100 rounded-xl blur opacity-75"></div>
+                <div className="relative bg-white p-3 rounded-xl shadow-sm border border-gray-200/50">
+                  <FaCode className="text-blue-600 text-xl" />
+                </div>
               </div>
-
-              <div className="space-y-8">
-                {skillCategories.map((category, index) => (
-                  <div 
-                    key={category.title}
-                    data-aos="fade-up" 
-                    data-aos-delay={200 + (index * 100)}
-                  >
-                    
-                    <div className="grid lg:grid-cols-6 grid-cols-4 gap-2">
-                      {category.skills.map((tech) => (
-                        <div 
-                          key={tech.name}
-                          className="bg-white border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-md hover:scale-105 hover:border-blue-300 flex flex-col items-center"
-                        >
-                          <div className="mb-2">{tech.icon}</div>
-                          <span className="text-gray-700 text-sm font-medium">{tech.name}</span>
-                        </div>
-                      ))}
+              <h3 className="text-2xl font-bold text-gray-800 ml-4">My Skills</h3>
+            </div>
+            
+            <div>
+              <div className="flex items-center mb-4">
+                <FaLaptopCode className="text-blue-500 mr-2 text-lg" />
+                <h4 className="text-lg font-semibold text-gray-700">Frontend Development</h4>
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                {technologies
+                  .filter(tech => frontendSkills.includes(tech.name))
+                  .map((tech) => (
+                    <div 
+                      key={tech.name}
+                      className={`${tech.bg} rounded-xl p-3 flex flex-col items-center transition-all duration-300 hover:scale-105 hover:shadow-md border border-gray-200/50`}
+                    >
+                      <div className={`${tech.color} text-2xl mb-2`}>{tech.icon}</div>
+                      <span className="text-xs font-medium text-gray-700 text-center">{tech.name}</span>
                     </div>
-                  </div>
-                ))}
-
+                  ))}
               </div>
             </div>
           </div>

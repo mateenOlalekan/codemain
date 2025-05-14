@@ -94,7 +94,7 @@ const Home = () => {
   return (
     <section id="home" data-section="home" className="relative min-h-screen flex flex-col justify-center pt-16 md:pt-0 overflow-hidden bg-gradient-to-b from-white to-blue-50">
       {/* Background decorative elements */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-blue-100 rounded-full filter blur-3xl opacity-20" />
+      <div className="absolute top-20 right-10 w-64 h-64 bg-black rounded-full filter blur-3xl opacity-20" />
       <div className="absolute bottom-20 left-10 w-80 h-80 bg-indigo-100 rounded-full filter blur-3xl opacity-20" />
       
       <div className="max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10 flex flex-col justify-center min-h-[calc(100vh-80px)]">
