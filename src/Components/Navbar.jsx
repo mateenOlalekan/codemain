@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { name: "Contact", href: "#contact", id: "contact" },
 ];
 
-const RESUME_LINK = "https://drive.google.com/file/d/1ry2-7qFPugX0kU-YX-KOvZMLcGGO9zL4/view?usp=sharing";
+const RESUME_LINK = "https://drive.google.com/file/d/1djbi0oE0O1l5Mf0BbNoE2a0EVCR_u0Os/view?usp=drive_link";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
