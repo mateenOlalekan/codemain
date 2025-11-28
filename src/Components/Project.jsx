@@ -7,14 +7,15 @@ import "aos/dist/aos.css";
 const projectsData = [
   {
     id: "1",
-    title: "WanderLust",
+    title: "Cosplitz",
     description: "A travel agency web app helping users book trips, explore destinations, and manage travel plans.",
-    technologies: ["HTML/CSS/JavaScript", "Bootstrap"],
+    technologies: ["React","Tailwind"],
     category: "Web App",
     featured: true,
-    liveUrl: "https://thewanderlusttravels.com/",
-    githubUrl: "https://github.com/example/taskmanager",
+    liveUrl: "Cosplitz.vercel.app",
+    githubUrl: null,
   },
+
   {
     id: "2",
     title: "Coach Africa",
@@ -85,6 +86,17 @@ const projectsData = [
     liveUrl: "https://taskflow-pro.vercel.app/",
     githubUrl: "https://github.com/example/taskflow",
   },
+    { 
+  id: "9",
+  title: "The Wanderlust Travels",
+  description: "A travel-agency platform offering curated travel experiences and itineraries for wanderers seeking memorable trips and adventures.",
+  category: "Travel",
+  githubUrl: null,
+  technologies: ["HTML/CSS/JavaScript", "Bootstrap"],
+  category: "Web App",
+  featured: true,
+  liveUrl: "https://thewanderlusttravels.com/",
+}
 ];
 
 const ProjectsShowcase = () => {
