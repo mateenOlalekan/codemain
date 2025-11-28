@@ -8,86 +8,92 @@ const projectsData = [
   {
     id: "1",
     title: "Cosplitz",
-    description: "Expense sharing app.",
-    technologies: ["React","Tailwind"],
+    description: "A smart expense-sharing application that helps groups track contributions, split bills, and settle payments seamlessly with a clean, user-friendly interface.",
+    technologies: ["React", "Tailwind"],
     category: "Web App",
     featured: true,
-    liveUrl: "https://Cosplitz.vercel.app",
+    liveUrl: "https://cosplitz.vercel.app",
     githubUrl: null,
   },
 
   {
     id: "2",
     title: "Coach Africa",
-    description: "A platform for educators to master modern teaching technologies, enhancing learning and engagement.",
+    description: "An educational platform designed to empower African educators with modern digital teaching tools, interactive resources, and real-time learner engagement features.",
     technologies: ["React", "Tailwind", "Firebase"],
     category: "Education",
     featured: true,
     liveUrl: "https://coach-africa.vercel.app",
     githubUrl: "https://github.com/example/finance",
   },
+
   {
     id: "3",
     title: "Wavorax",
-    description: "A real-time weather tracking application with detailed forecasts and location-based updates.",
+    description: "A real-time weather monitoring web app delivering accurate forecasts, live climate updates, and location-based insights using modern weather APIs.",
     technologies: ["React", "REST API", "Firebase"],
     category: "Utility",
     featured: false,
     liveUrl: "https://wavorax.vercel.app",
     githubUrl: "https:/",
   },
+
   {
     id: "4",
     title: "Verder",
-    description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury.",
+    description: "A stylish furniture showcase platform featuring modern, functional interior pieces with smooth browsing, elegant layouts, and a premium brand experience.",
     technologies: ["React", "Tailwind"],
-    category:null,
+    category: "E-commerce",
     featured: true,
     liveUrl: "https://verdecraft.vercel.app/",
     githubUrl: "https://github.com/example/furniture",
   },
+
   {
     id: "5",
     title: "Luxe Mart",
-    description: "An IoT dashboard for managing home devices, automation, and energy consumption tracking.",
+    description: "A fully responsive eCommerce web app offering product browsing, cart management, secure checkout flow, order tracking, and a seamless modern shopping experience.",
     technologies: ["React", "Tailwind", "Vercel"],
     category: "E-commerce",
     featured: true,
     liveUrl: "https://example.com/smarthome",
     githubUrl: "https://github.com/example/smarthome",
   },
+
   {
     id: "6",
-    title: "Kanban Board",
-    description: "A full-fledged platform with task management, progress tracking, and collaboration tools.",
+    title: "Fintrack",
+    description: "An advanced eCommerce dashboard UI providing real-time analytics, product and inventory tools, order monitoring, revenue breakdowns, and customer interaction insights.",
     technologies: ["React", "Tailwind", "Firebase"],
     category: "Productivity",
     featured: false,
     liveUrl: "https://example.com/lms",
     githubUrl: "https://github.com/example/lms",
   },
+
   {
     id: "7",
-    title: "TaskFlow Pro",
-    description: "Comprehensive task management system with workflow automation, team collaboration, and progress analytics.",
+    title: "Avalon",
+    description: "A real estate management web app offering property listings, client inquiries, location search, and an organized dashboard for seamless property discovery.",
     technologies: ["React", "Node.js", "MongoDB"],
-    category: "Productivity",
+    category: "Real Estate",
     featured: false,
     liveUrl: "https://taskflow-pro.vercel.app/",
     githubUrl: "https://github.com/example/taskflow",
   },
-    { 
-  id: "8d",
-  title: "The Wanderlust Travels",
-  description: "A travel-agency platform offering curated travel experiences and itineraries for wanderers seeking memorable trips and adventures.",
-  category: "Travel",
-  githubUrl: null,
-  technologies: ["HTML/CSS/JavaScript", "Bootstrap"],
-  category: "Web App",
-  featured: true,
-  liveUrl: "https://thewanderlusttravels.com/",
-}
+
+  { 
+    id: "8",
+    title: "The Wanderlust Travels",
+    description: "A travel-experience platform offering curated destinations, guided itineraries, travel tips, and an elegant interface tailored for explorers and adventure seekers.",
+    technologies: ["HTML/CSS/JavaScript", "Bootstrap"],
+    category: "Web App",
+    featured: true,
+    liveUrl: "https://thewanderlusttravels.com/",
+    githubUrl: null,
+  }
 ];
+
 
 const ProjectsShowcase = () => {
   const [hoveredId, setHoveredId] = useState(null);
