@@ -28,13 +28,13 @@ const projectsData = [
   },
   {
     id: "3",
-    title: "Weather App",
+    title: "Wavorax",
     description: "A real-time weather tracking application with detailed forecasts and location-based updates.",
     technologies: ["React", "REST API", "Firebase"],
     category: "Utility",
     featured: false,
-    liveUrl: "https://nazeem.vercel.app/",
-    githubUrl: "https://github.com/mateenOlalekan/weatherapp",
+    liveUrl: "https://warorax.vercel.app",
+    githubUrl: "https:/",
   },
   {
     id: "4",
@@ -48,16 +48,6 @@ const projectsData = [
   },
   {
     id: "5",
-    title: "Portfolio v1",
-    description: "A platform for designers and artists to showcase work with customizable layouts and analytics.",
-    technologies: ["React.js", "Tailwind CSS", "Vercel"],
-    category: "Portfolio",
-    featured: true,
-    liveUrl: "https://matinport.vercel.app/",
-    githubUrl: "https://github.com/mateenOlalekan/DevPortFolio_v1",
-  },
-  {
-    id: "6",
     title: "Luxe Mart",
     description: "An IoT dashboard for managing home devices, automation, and energy consumption tracking.",
     technologies: ["React", "Tailwind", "Vercel"],
@@ -67,7 +57,7 @@ const projectsData = [
     githubUrl: "https://github.com/example/smarthome",
   },
   {
-    id: "7",
+    id: "6",
     title: "Kanban Board",
     description: "A full-fledged platform with task management, progress tracking, and collaboration tools.",
     technologies: ["React", "Tailwind", "Firebase"],
@@ -77,7 +67,7 @@ const projectsData = [
     githubUrl: "https://github.com/example/lms",
   },
   {
-    id: "8",
+    id: "7",
     title: "TaskFlow Pro",
     description: "Comprehensive task management system with workflow automation, team collaboration, and progress analytics.",
     technologies: ["React", "Node.js", "MongoDB"],
@@ -87,7 +77,7 @@ const projectsData = [
     githubUrl: "https://github.com/example/taskflow",
   },
     { 
-  id: "9",
+  id: "8d",
   title: "The Wanderlust Travels",
   description: "A travel-agency platform offering curated travel experiences and itineraries for wanderers seeking memorable trips and adventures.",
   category: "Travel",
