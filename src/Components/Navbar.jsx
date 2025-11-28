@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { name: "Contact", href: "#contact", id: "contact" },
 ];
 
-const RESUME_LINK = "https://drive.google.com/file/d/1djbi0oE0O1l5Mf0BbNoE2a0EVCR_u0Os/view?usp=drive_link";
+const RESUME_LINK = "https://drive.google.com/file/d/1mBCFAo-yiRiI5bHYj1lhrJS8niAMLsC_/view?usp=drive_link";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -102,7 +102,7 @@ const Navbar = () => {
             <div className="absolute -inset-1 bg-blue-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-300" />
           </div>
           <div className="flex text-3xl items-center">
-            <span className="text-white font-bold">Ola</span>
+            <span className="text-slate-600 font-bold">Ola</span>
             <span className="text-blue-600 font-bold">lekan</span>  
           </div>
         </a>

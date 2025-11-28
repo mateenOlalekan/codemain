@@ -44,3 +44,16 @@
   display: none; /* Hide scrollbar */
   width: 0; /* Optional - make scrollbar track invisible */
 }
+
+        @keyframes slide {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        
+        .animate-slide {
+          animation: slide 20s linear infinite;
+        }
+        
+        .tech-slider {
+          width: max-content;
+        }

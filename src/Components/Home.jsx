@@ -62,13 +62,12 @@ const Home = () => {
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
       strings: [
-        "Web Developer",
-        "UI/UX Designer",
-        "Frontend Expert",
-        "React Specialist"
+        "Frontend Developer",
+        "Backend Developer",
+        "IT Support Engineer"
       ],
-      typeSpeed: 80,
-      backSpeed: 50,
+      typeSpeed: 85,
+      backSpeed: 70,
       backDelay: 1500,
       startDelay: 500,
       loop: true,
@@ -191,7 +190,7 @@ const Home = () => {
               {/* Experience badge */}
               <div className="absolute -top-4 right-0 bg-white rounded-lg shadow-xl p-3 animate-bounce">
                 <div className="text-center">
-                  <p className="text-blue-600 font-bold text-xl">5+</p>
+                  <p className="text-blue-600 font-bold text-xl">2+</p>
                   <p className="text-gray-600 text-xs">Years Experience</p>
                 </div>
               </div>
@@ -199,7 +198,7 @@ const Home = () => {
               {/* Projects badge */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-xl p-3">
                 <div className="text-center">
-                  <p className="text-blue-600 font-bold text-xl">50+</p>
+                  <p className="text-blue-600 font-bold text-xl">10+</p>
                   <p className="text-gray-600 text-xs">Projects Completed</p>
                 </div>
               </div>
@@ -220,21 +219,7 @@ const Home = () => {
         </div>
       </div>
       
-      {/* Add global styles to head */}
-      <style jsx global>{`
-        @keyframes slide {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        
-        .animate-slide {
-          animation: slide 20s linear infinite;
-        }
-        
-        .tech-slider {
-          width: max-content;
-        }
-      `}</style>
+
     </section>
   );
 };
