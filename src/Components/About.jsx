@@ -53,7 +53,7 @@ const AboutMe = () => {
   return (
     <section 
       ref={aboutSectionRef} 
-      className="relative  py-20 bg-gradient-to-b from-white to-blue-50/30"
+      className="relative  py-20"
       id="about"
     >
       {/* Floating gradient blobs */}

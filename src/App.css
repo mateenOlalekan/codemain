@@ -9,7 +9,36 @@
   scroll-behavior: smooth;
 }
 
+  @keyframes gridMove {
+          0% {
+            background-position: 0 0, 0 0;
+          }
+          100% {
+            background-position: 50px 50px, 50px 50px;
+          }
+        }
 
+        @keyframes floatCube {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
 
 ::-webkit-scrollbar {
   display: none; /* Hide scrollbar */

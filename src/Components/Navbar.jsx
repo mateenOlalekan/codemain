@@ -102,7 +102,7 @@ const Navbar = () => {
             <div className="absolute -inset-1 bg-blue-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-300" />
           </div>
           <div className="flex text-3xl items-center">
-            <span className="text-gray-900 font-bold">Ola</span>
+            <span className="text-white font-bold">Ola</span>
             <span className="text-blue-600 font-bold">lekan</span>  
           </div>
         </a>
@@ -128,7 +128,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             href={RESUME_LINK}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 rounded-full py-2 px-5 text-base font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-600 text-white hover:from-blue-700 hover:to-blue-700 rounded-full py-2 px-5 text-base font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
           >
             <FaDownload className="text-sm" />
             <span>Resume</span>
@@ -140,7 +140,7 @@ const Navbar = () => {
           onClick={toggleMenu}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full ${
-            scrolled ? "bg-blue-100 text-blue-600" : "bg-white/30 backdrop-blur-md text-blue-600"
+            scrolled ? "bg-blue-100 text-blue-600" : "bg-white backdrop-blur-md text-blue-600"
           } transition-all hover:bg-blue-200`}
         >
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -201,7 +201,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             href={RESUME_LINK}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-8 rounded-full text-lg font-medium hover:shadow-lg transition-all transform hover:-translate-y-1"
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-600 text-white py-3 px-8 rounded-full text-lg font-medium hover:shadow-lg transition-all transform hover:-translate-y-1"
           >
             <FaDownload />
             <span>Download Resume</span>
@@ -210,7 +210,7 @@ const Navbar = () => {
         
         {/* Decorative elements */}
         <div className="absolute bottom-10 left-10 w-64 h-64 bg-blue-100 rounded-full filter blur-3xl opacity-20" />
-        <div className="absolute top-20 right-10 w-40 h-40 bg-indigo-100 rounded-full filter blur-3xl opacity-20" />
+        <div className="absolute top-20 right-10 w-40 h-40 bg-blue-100 rounded-full filter blur-3xl opacity-20" />
       </div>
     </header>
   );

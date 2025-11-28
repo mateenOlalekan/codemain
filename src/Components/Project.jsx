@@ -173,10 +173,10 @@ const ProjectsShowcase = () => {
   };
 
   return (
-    <div className="bg-white" id="project">
+    <div  id="project">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto mb-12 text-center" data-aos="fade-up">
-          <h2 className="text-3xl font-bold mb-4 text-black">My Projects</h2>
+          <h2 className="text-3xl font-bold mb-4 text-white">My Projects</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 text-sm">A showcase of my work across various technologies and domains.</p>
         </div>
