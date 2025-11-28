@@ -8,11 +8,11 @@ const projectsData = [
   {
     id: "1",
     title: "Cosplitz",
-    description: "A travel agency web app helping users book trips, explore destinations, and manage travel plans.",
+    description: "Expense sharing app.",
     technologies: ["React","Tailwind"],
     category: "Web App",
     featured: true,
-    liveUrl: "Cosplitz.vercel.app",
+    liveUrl: "https://Cosplitz.vercel.app",
     githubUrl: null,
   },
 
@@ -33,7 +33,7 @@ const projectsData = [
     technologies: ["React", "REST API", "Firebase"],
     category: "Utility",
     featured: false,
-    liveUrl: "https://warorax.vercel.app",
+    liveUrl: "https://wavorax.vercel.app",
     githubUrl: "https:/",
   },
   {
@@ -41,7 +41,7 @@ const projectsData = [
     title: "Verder",
     description: "Transforming spaces with stylish, functional, and modern furniture designs. Experience comfort and elegance with a touch of luxury.",
     technologies: ["React", "Tailwind"],
-    category: "E-commerce",
+    category:null,
     featured: true,
     liveUrl: "https://verdecraft.vercel.app/",
     githubUrl: "https://github.com/example/furniture",
