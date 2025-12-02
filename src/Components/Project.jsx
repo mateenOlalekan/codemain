@@ -30,7 +30,7 @@ const projectsData = [
   {
     id: "3",
     title: "Wavorax",
-    description: "A real-time weather monitoring web app delivering accurate forecasts, live climate updates, and location-based insights using modern weather APIs.",
+    description: "A modern, responsive web application that allows users to browse, book, and manage room reservations seamlessly. The platform features an intuitive interface where users can view room details, check availability, and make bookings in just a few clicks.",
     technologies: ["React", "REST API", "Firebase"],
     category: "Utility",
     featured: false,
