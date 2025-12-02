@@ -67,7 +67,7 @@ const projectsData = [
     technologies: ["React", "Tailwind", "Firebase"],
     category: "Productivity",
     featured: false,
-    liveUrl: "https://example.com/lms",
+    liveUrl: "https://fintrack-nu-five.vercel.app/",
     githubUrl: "https://github.com/example/lms",
   },
 
@@ -75,7 +75,7 @@ const projectsData = [
     id: "7",
     title: "Avalon",
     description: "A real estate management web app offering property listings, client inquiries, location search, and an organized dashboard for seamless property discovery.",
-    technologies: ["React", "Node.js", "MongoDB"],
+    technologies: ["React", "tailwind","express","node"],
     category: "Real Estate",
     featured: false,
     liveUrl: "https://taskflow-pro.vercel.app/",
@@ -84,9 +84,9 @@ const projectsData = [
 
   { 
     id: "8",
-    title: "The Wanderlust Travels",
-    description: "A travel-experience platform offering curated destinations, guided itineraries, travel tips, and an elegant interface tailored for explorers and adventure seekers.",
-    technologies: ["HTML/CSS/JavaScript", "Bootstrap"],
+    title: "DaGirl Nails",
+    description: "A modern, responsive service-booking platform built for a nail technician. Users can browse available nail services, submit booking requests, and contact the technician directly. The site features a clean UI, smooth navigation, and a mobile-friendly layout powered by React, TailwindCSS, and Vercel hosting.",
+    technologies: ["React", "tailwind"],
     category: "Web App",
     featured: true,
     liveUrl: "https://thewanderlusttravels.com/",
